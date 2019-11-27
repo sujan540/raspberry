@@ -15,27 +15,26 @@ public class LedController {
         return "Hello world!";
     }
 
-    @RequestMapping("/oneOn")
+    @RequestMapping("/fourOn")
     public String oneOn() {
 
         if (pin1 == null) {
             GpioController gpio = GpioFactory.getInstance();
             pin1 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "MyLED", PinState.HIGH);
-            pin1.toggle();
         }
+        pin1.toggle();
 
         return "OK";
     }
 
-    @RequestMapping("/oneOff")
+    @RequestMapping("/fourOff")
     public String oneOff() {
 
         if (pin1 == null) {
             GpioController gpio = GpioFactory.getInstance();
             pin1 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "MyLED", PinState.LOW);
-            pin1.toggle();
         }
-
+        pin1.toggle();
         return "OK";
     }
 

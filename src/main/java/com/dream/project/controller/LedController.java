@@ -18,11 +18,11 @@ public class LedController {
     @RequestMapping("/light")
     public String light() {
         if (pin == null) {
-            GpioController gpio = GpioFactory.getInstance();
-            pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "MyLED", PinState.LOW);
+            final GpioController controller = GpioFactory.getInstance();
+            pin = controller.provisionDigitalOutputPin(RaspiPin.GPIO_21, "MyLED");
         }
 
-        pin.toggle();
+        pin.high();
 
         return "OK";
     }

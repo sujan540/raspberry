@@ -13,94 +13,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class RelayController {
 
-    private static GpioPinDigitalOutput pinOutput = null;
+    private static GpioPinDigitalOutput gpioPinDigitalOutput = null;
+    private static GpioPinDigitalOutput gpioPinDigitalOutput_01 = null;
+    private static GpioPinDigitalOutput gpioPinDigitalOutput_08 = null;
 
     @RequestMapping(value = "relay/{gpioId}")
     public String toggleRelay(@PathVariable Integer gpioId) {
 
         final GpioController gpio = GpioFactory.getInstance();
         switch (gpioId) {
-            case 0:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00);
-                break;
             case 1:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
-                break;
-            case 2:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02);
-                break;
-            case 3:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03);
-                break;
-            case 4:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04);
-                break;
-            case 5:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05);
-                break;
-            case 6:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06);
-                break;
-            case 7:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07);
+                gpioPinDigitalOutput_01 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
+                gpioPinDigitalOutput = gpioPinDigitalOutput_01;
+                gpioPinDigitalOutput_01.toggle();
                 break;
             case 8:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08);
-                break;
-            case 9:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_09);
-                break;
-            case 10:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10);
-                break;
-            case 11:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11);
-                break;
-            case 12:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12);
-                break;
-            case 13:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13);
-                break;
-            case 14:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_14);
-                break;
-            case 15:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_15);
-                break;
-            case 16:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_16);
-                break;
-            case 17:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_17);
-                break;
-            case 18:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_18);
-                break;
-            case 19:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_19);
-                break;
-            case 20:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_20);
-                break;
-            case 21:
-                pinOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_21);
+                gpioPinDigitalOutput_08 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08);
+                gpioPinDigitalOutput = gpioPinDigitalOutput_08;
+                gpioPinDigitalOutput_08.toggle();
                 break;
             default:
-                pinOutput = null;
+                gpioPinDigitalOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00);
+                gpioPinDigitalOutput.toggle();
                 break;
         }
-        if (pinOutput == null) {
-            return "INVALID";
-        }
-        if (pinOutput.isHigh()) {
-            pinOutput.low();
-            return "OFF";
-        } else if (pinOutput.isLow()) {
-            pinOutput.high();
-            return "ON";
-        }
-        return "NEUTRAL";
+
+        return gpioPinDigitalOutput.getState().getName();
     }
 
 }

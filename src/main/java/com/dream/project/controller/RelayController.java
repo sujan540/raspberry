@@ -21,24 +21,33 @@ public class RelayController {
     public String toggleRelay(@PathVariable Integer gpioId) {
 
         final GpioController gpio = GpioFactory.getInstance();
+
+        String state = null;
         switch (gpioId) {
             case 1:
-                gpioPinDigitalOutput_01 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
-                gpioPinDigitalOutput = gpioPinDigitalOutput_01;
+                if (gpioPinDigitalOutput_01 == null) {
+                    gpioPinDigitalOutput_01 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
+                    state = gpioPinDigitalOutput_01.getState().getName();
+                }
                 gpioPinDigitalOutput_01.toggle();
                 break;
             case 8:
-                gpioPinDigitalOutput_08 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08);
-                gpioPinDigitalOutput = gpioPinDigitalOutput_08;
+                if (gpioPinDigitalOutput_08 == null) {
+                    gpioPinDigitalOutput_08 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08);
+                    state = gpioPinDigitalOutput_08.getState().getName();
+                }
                 gpioPinDigitalOutput_08.toggle();
                 break;
             default:
-                gpioPinDigitalOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00);
+                if (gpioPinDigitalOutput == null) {
+                    gpioPinDigitalOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00);
+                    state = gpioPinDigitalOutput.getState().getName();
+                }
                 gpioPinDigitalOutput.toggle();
                 break;
         }
 
-        return gpioPinDigitalOutput.getState().getName();
+        return state;
     }
 
 }

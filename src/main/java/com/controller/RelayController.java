@@ -33,45 +33,45 @@ public class RelayController {
                 if (gpioPinDigitalOutput_01 == null) {
                     gpioPinDigitalOutput_01 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
                 }
-                gpioPinDigitalOutput_01.high();
-                TimeUnit.MILLISECONDS.sleep(500);
                 gpioPinDigitalOutput_01.low();
+                TimeUnit.MILLISECONDS.sleep(100);
+                gpioPinDigitalOutput_01.high();
                 state = gpioPinDigitalOutput_01.getState().getName();
                 break;
             case 2:
                 if (gpioPinDigitalOutput_02 == null) {
                     gpioPinDigitalOutput_02 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02);
                 }
-                gpioPinDigitalOutput_02.high();
-                TimeUnit.MILLISECONDS.sleep(500);
                 gpioPinDigitalOutput_02.low();
+                TimeUnit.MILLISECONDS.sleep(100);
+                gpioPinDigitalOutput_02.high();
                 state = gpioPinDigitalOutput_02.getState().getName();
                 break;
             case 3:
                 if (gpioPinDigitalOutput_03 == null) {
                     gpioPinDigitalOutput_03 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03);
                 }
-                gpioPinDigitalOutput_03.high();
-                TimeUnit.MILLISECONDS.sleep(500);
                 gpioPinDigitalOutput_03.low();
+                TimeUnit.MILLISECONDS.sleep(100);
+                gpioPinDigitalOutput_03.high();
                 state = gpioPinDigitalOutput_03.getState().getName();
                 break;
             case 8:
                 if (gpioPinDigitalOutput_08 == null) {
                     gpioPinDigitalOutput_08 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08);
                 }
-                gpioPinDigitalOutput_08.high();
-                TimeUnit.MILLISECONDS.sleep(500);
                 gpioPinDigitalOutput_08.low();
+                TimeUnit.MILLISECONDS.sleep(100);
+                gpioPinDigitalOutput_08.high();
                 state = gpioPinDigitalOutput_08.getState().getName();
                 break;
             default:
                 if (gpioPinDigitalOutput == null) {
                     gpioPinDigitalOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00);
                 }
-                gpioPinDigitalOutput.high();
-                TimeUnit.MILLISECONDS.sleep(500);
                 gpioPinDigitalOutput.low();
+                TimeUnit.MILLISECONDS.sleep(100);
+                gpioPinDigitalOutput.high();
                 state = gpioPinDigitalOutput.getState().getName();
                 break;
         }
@@ -88,7 +88,7 @@ public class RelayController {
         switch (gpioId) {
             case 1:
                 if (gpioPinDigitalOutput_01 == null) {
-                    gpioPinDigitalOutput_01 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, PinState.LOW);
+                    gpioPinDigitalOutput_01 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, PinState.HIGH);
                 } else {
                     gpioPinDigitalOutput_01.toggle();
                 }
@@ -96,7 +96,7 @@ public class RelayController {
                 break;
             case 8:
                 if (gpioPinDigitalOutput_08 == null) {
-                    gpioPinDigitalOutput_08 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08, PinState.LOW);
+                    gpioPinDigitalOutput_08 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08, PinState.HIGH);
                 } else {
                     gpioPinDigitalOutput_08.toggle();
                 }
@@ -104,7 +104,7 @@ public class RelayController {
                 break;
             default:
                 if (gpioPinDigitalOutput == null) {
-                    gpioPinDigitalOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, PinState.LOW);
+                    gpioPinDigitalOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, PinState.HIGH);
                 } else {
                     gpioPinDigitalOutput.toggle();
                 }

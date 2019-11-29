@@ -1,4 +1,4 @@
-package com.dream.project.controller;
+package com.controller;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;

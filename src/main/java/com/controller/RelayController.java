@@ -25,6 +25,12 @@ public class RelayController {
     private static GpioPinDigitalOutput gpioPinDigitalOutput_03 = null;
     private static GpioPinDigitalOutput gpioPinDigitalOutput_08 = null;
 
+    @RequestMapping(value = "test")
+    public String onOff() {
+        return "This is testing";
+    }
+
+
     @RequestMapping(value = "relay/{gpioNumber}/{state}")
     public String onOff(@PathVariable Integer gpioNumber, @PathVariable String state) throws InterruptedException {
 

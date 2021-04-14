@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "user")
-@Table(name = "user")
+@Table(name = "user", schema = "raspberry")
 @Getter
 @Setter
 @EqualsAndHashCode

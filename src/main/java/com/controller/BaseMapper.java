@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 public abstract class BaseMapper<E, R, R1> implements Validation<R> {
 
-    List<Optional<R1>> buildResponses(List<E> entities) {
+    List<R1> buildResponses(List<E> entities) {
         return entities.stream()
-                .map(e -> mapToResponse(Optional.of(e)))
+                .map(e -> mapToResponse(Optional.ofNullable(e)).get())
                 .collect(Collectors.toList());
     }
 

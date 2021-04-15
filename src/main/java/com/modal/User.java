@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Setter
 @EqualsAndHashCode
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class User implements Serializable {
     @Id

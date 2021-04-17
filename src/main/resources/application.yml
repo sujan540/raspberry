@@ -5,10 +5,13 @@ spring:
   application:
     name: raspberry
   datasource:
+    platform: postgres
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    driverClassName: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
     password: password
+    initialization-mode: always
+    continue-on-error: false
   jpa:
     properties:
       hibernate:

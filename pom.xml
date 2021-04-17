@@ -24,6 +24,7 @@
         <build.jdbc.url>jdbc:postgresql://localhost:5432/postgres</build.jdbc.url>
         <build.jdbc.username>postgres</build.jdbc.username>
         <build.jdbc.password>password</build.jdbc.password>
+        <build.jdbc.schema>raspberry</build.jdbc.schema>
     </properties>
 
     <dependencies>
@@ -114,6 +115,7 @@
                                     <goal>execute</goal>
                                 </goals>
                                 <configuration>
+                                    <driver>${build.jdbc.driver}</driver>
                                     <url>${build.jdbc.url}</url>
                                     <username>${build.jdbc.username}</username>
                                     <password>${build.jdbc.password}</password>
@@ -140,13 +142,15 @@
                 <plugin>
                     <groupId>org.liquibase</groupId>
                     <artifactId>liquibase-maven-plugin</artifactId>
-                    <version>3.8.0</version>
+                    <version>3.6.3</version>
                     <configuration>
                         <changeLogFile>${liquibase.changeLogFile}</changeLogFile>
                         <driver>${build.jdbc.driver}</driver>
                         <url>${build.jdbc.url}</url>
-                        <username>postgres</username>
-                        <password>password</password>
+                        <username>${build.jdbc.username}</username>
+                        <password>${build.jdbc.password}</password>
+                        <defaultSchemaName>{build.jdbc.schema}</defaultSchemaName>
+                        <changelogSchemaName>{build.jdbc.schema}</changelogSchemaName>
                     </configuration>
                     <dependencies>
                         <dependency>

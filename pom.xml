@@ -149,8 +149,8 @@
                         <url>${build.jdbc.url}</url>
                         <username>${build.jdbc.username}</username>
                         <password>${build.jdbc.password}</password>
-                        <defaultSchemaName>{build.jdbc.schema}</defaultSchemaName>
-                        <changelogSchemaName>{build.jdbc.schema}</changelogSchemaName>
+                        <defaultSchemaName>${build.jdbc.schema}</defaultSchemaName>
+                        <changelogSchemaName>${build.jdbc.schema}</changelogSchemaName>
                     </configuration>
                     <dependencies>
                         <dependency>

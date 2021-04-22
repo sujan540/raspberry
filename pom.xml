@@ -23,7 +23,7 @@
         <build.jdbc.driver>org.postgresql.Driver</build.jdbc.driver>
         <build.jdbc.url>jdbc:postgresql://localhost:5432/postgres</build.jdbc.url>
         <build.jdbc.username>postgres</build.jdbc.username>
-        <build.jdbc.password>password</build.jdbc.password>
+        <build.jdbc.password>postgres</build.jdbc.password>
         <build.jdbc.schema>raspberry</build.jdbc.schema>
     </properties>
 

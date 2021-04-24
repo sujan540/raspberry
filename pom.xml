@@ -21,7 +21,7 @@
         </liquibase.changeLogFile>
         <liquibase.skip>false</liquibase.skip>
         <build.jdbc.driver>org.postgresql.Driver</build.jdbc.driver>
-        <build.jdbc.url>jdbc:postgresql://localhost:5432/postgres</build.jdbc.url>
+        <build.jdbc.url>jdbc:postgresql://172.17.0.1:5432/postgres</build.jdbc.url>
         <build.jdbc.username>postgres</build.jdbc.username>
         <build.jdbc.password>postgres</build.jdbc.password>
         <build.jdbc.schema>raspberry</build.jdbc.schema>
@@ -136,8 +136,16 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
+                        <mainClass>com.Application</mainClass>
                         <addResources>false</addResources>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.liquibase</groupId>
